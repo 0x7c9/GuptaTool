@@ -64,6 +64,7 @@
     <Compile Include="GuptaObjects\GuptaDialog.cs" />
     <Compile Include="GuptaObjects\GuptaField.cs" />
     <Compile Include="GuptaObjects\GuptaForm.cs" />
+    <Compile Include="GuptaObjects\GuptaObject.cs" />
     <Compile Include="GuptaObjects\GuptaTable.cs" />
     <Compile Include="GuptaParserExt.cs" />
     <Compile Include="Program.cs" />

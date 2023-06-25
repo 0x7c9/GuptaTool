@@ -19,6 +19,13 @@ namespace GuptaTool
    return false;
   }
 
+  internal static bool IsDataFieldMarker(string line)
+  {
+   if (line.Contains(".head 3 +  Data Field:"))
+    return true;
+   return false;
+  }
+
 
   internal static string ResolveValue(string line)
   {

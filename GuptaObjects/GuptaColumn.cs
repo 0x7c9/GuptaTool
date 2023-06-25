@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace GuptaTool.GuptaObjects
 {
- internal class GuptaColumn
+ internal class GuptaColumn : GuptaObject
  {
-  internal string name;
   internal GuptaTable parent;
   internal List<string> props;
 

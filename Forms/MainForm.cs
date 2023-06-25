@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data.Common;
 
 namespace GuptaTool.Forms
 {
@@ -71,10 +72,10 @@ namespace GuptaTool.Forms
 
   private void PrintWindows()
   {
-   txtResult.ForeColor = Color.Green;
+   txtResult.Text = String.Empty;
    foreach (var window in guptaParser.tables)
    {
-    txtResult.Text += $"Found Table: {window.windowName} , columns: {window.columns.Count}\r\n";
+    txtResult.Text += $"Found Table: {window.name} , columns: {window.columns.Count}\r\n";
    }
    foreach (var window in guptaParser.forms)
    {
@@ -91,7 +92,7 @@ namespace GuptaTool.Forms
   {
    foreach(var table in guptaParser.tables)
    {
-    TreeNode parent = new TreeNode(table.windowName);
+    TreeNode parent = new TreeNode(table.name);
     var TreeNodesList = new List<TreeNode>();
     foreach (var col in table.columns)
     {
@@ -103,6 +104,37 @@ namespace GuptaTool.Forms
     }
     treeStructure.Nodes.Add(parent);
    }
+
+   foreach (var table in guptaParser.forms)
+   {
+    TreeNode parent = new TreeNode(table.name);
+    var TreeNodesList = new List<TreeNode>();
+    foreach (var field in table.fields)
+    {
+     TreeNodesList.Add(new TreeNode(field.name));
+    }
+    foreach (var entry in TreeNodesList)
+    {
+     parent.Nodes.Add(entry);
+    }
+    treeStructure.Nodes.Add(parent);
+   }
+
+   foreach (var dialog in guptaParser.dialogs)
+   {
+    TreeNode parent = new TreeNode(dialog.name);
+    var TreeNodesList = new List<TreeNode>();
+    foreach (var field in dialog.fields)
+    {
+     TreeNodesList.Add(new TreeNode(field.name));
+    }
+    foreach (var entry in TreeNodesList)
+    {
+     parent.Nodes.Add(entry);
+    }
+    treeStructure.Nodes.Add(parent);
+   }
+
   }
 
   private void txtColumnQuery_TextChanged(object sender, EventArgs e)
@@ -120,7 +152,7 @@ namespace GuptaTool.Forms
       foreach(var window in windows)
       {
        txtResult.ForeColor = Color.Orange;
-       txtResult.Text = $"{txtColumnQuery.Text} is located at: {window.windowName}\r\n";
+       txtResult.Text = $"{txtColumnQuery.Text} is located at: {window.name}\r\n";
       }
      }
      else
@@ -167,9 +199,19 @@ namespace GuptaTool.Forms
 
   private void PrintColumnInfo(GuptaColumn column)
   {
-   txtResult.ForeColor = Color.Orange;
-   txtResult.Text = $"{column.name} is located at: {column.parent.windowName}\r\n";
-   foreach (var prop in column.props)
+   txtResult.Text = String.Empty;
+   PrintProps(column.props);
+  }
+
+  private void PrintFieldInfoInfo(GuptaField field)
+  {
+   txtResult.Text = String.Empty;
+   PrintProps(field.props);
+  }
+
+  private void PrintProps(List<string> props)
+  {
+   foreach (var prop in props)
    {
     txtResult.Text += prop + "\r\n";
    }
@@ -178,24 +220,72 @@ namespace GuptaTool.Forms
   private void treeStructure_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
   {
    string name = treeStructure.SelectedNode.Text;
+
    if(name.Contains("col"))
    {
     GuptaColumn col = null;
 
     foreach(var table in guptaParser.tables)
     {
+     if (table.columns.Count == 0) continue;
      foreach(var column in table.columns)
      {
-      col = column;
-      break;
+      if (column.name == name)
+      {
+       col = column;
+       break;
+      }
+
      }
     }
-
     if(col != null)
     {
      PrintColumnInfo(col);
+    }  
+   }
+
+   if (name.Contains("df"))
+   {
+    GuptaField field = null;
+
+    foreach (var form in guptaParser.forms)
+    {
+     if (form.fields.Count == 0) continue;
+     foreach (var ff in form.fields)
+     {
+      if (ff.name == name)
+      {
+       field = ff;
+       break;
+      }
+     }
     }
-    
+    if (field != null)
+    {
+     PrintFieldInfoInfo(field);
+    }
+   }
+
+   if (name.Contains("df"))
+   {
+    GuptaField field = null;
+
+    foreach (var dialog in guptaParser.dialogs)
+    {
+     if (dialog.fields.Count == 0) continue;
+     foreach (var ff in dialog.fields)
+     {
+      if (ff.name == name)
+      {
+       field = ff;
+       break;
+      }
+     }
+    }
+    if (field != null)
+    {
+     PrintFieldInfoInfo(field);
+    }
    }
 
 

@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace GuptaTool.GuptaObjects
 {
- internal class GuptaTable
+ internal class GuptaTable : GuptaObject
  {
 
-
-  internal string windowName;
   internal List<GuptaColumn> columns;
 
   internal GuptaTable(List<string> block)
   {
    columns = new List<GuptaColumn>();
-   windowName = AptUtils.ResolveValue(block[0]);
+   name = AptUtils.ResolveValue(block[0]);
    ResolveColums(block);
   }
 

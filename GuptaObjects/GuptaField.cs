@@ -7,14 +7,13 @@ using System.Xml.Linq;
 
 namespace GuptaTool.GuptaObjects
 {
- internal class GuptaField
+ internal class GuptaField : GuptaObject
  {
 
-  internal string name;
-  internal GuptaTable parent;
+  internal GuptaObject parent;
   internal List<string> props;
 
-  internal GuptaField(GuptaTable parent_, string line, List<string> block)
+  internal GuptaField(GuptaObject parent_, string line, List<string> block)
   {
    parent = parent_;
    props = block;
