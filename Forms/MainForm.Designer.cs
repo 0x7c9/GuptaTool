@@ -32,18 +32,19 @@
    this.menuStrip1 = new System.Windows.Forms.MenuStrip();
    this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
    this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+   this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+   this.showFileHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
    this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
    this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
    this.groupBox1 = new System.Windows.Forms.GroupBox();
+   this.label2 = new System.Windows.Forms.Label();
+   this.txtDataFieldQuery = new System.Windows.Forms.TextBox();
    this.label1 = new System.Windows.Forms.Label();
    this.txtColumnQuery = new System.Windows.Forms.TextBox();
    this.groupBox2 = new System.Windows.Forms.GroupBox();
    this.txtResult = new System.Windows.Forms.TextBox();
-   this.label2 = new System.Windows.Forms.Label();
-   this.txtDataFieldQuery = new System.Windows.Forms.TextBox();
    this.treeStructure = new System.Windows.Forms.TreeView();
-   this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-   this.showFileHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+   this.showFileIncludesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
    this.menuStrip1.SuspendLayout();
    this.groupBox1.SuspendLayout();
    this.groupBox2.SuspendLayout();
@@ -72,9 +73,25 @@
    // openToolStripMenuItem
    // 
    this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-   this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+   this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
    this.openToolStripMenuItem.Text = "Open";
    this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+   // 
+   // actionsToolStripMenuItem
+   // 
+   this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showFileHistoryToolStripMenuItem,
+            this.showFileIncludesToolStripMenuItem});
+   this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
+   this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+   this.actionsToolStripMenuItem.Text = "Actions";
+   // 
+   // showFileHistoryToolStripMenuItem
+   // 
+   this.showFileHistoryToolStripMenuItem.Name = "showFileHistoryToolStripMenuItem";
+   this.showFileHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+   this.showFileHistoryToolStripMenuItem.Text = "Show file history";
+   this.showFileHistoryToolStripMenuItem.Click += new System.EventHandler(this.showFileHistoryToolStripMenuItem_Click);
    // 
    // helpToolStripMenuItem
    // 
@@ -103,6 +120,23 @@
    this.groupBox1.TabIndex = 1;
    this.groupBox1.TabStop = false;
    this.groupBox1.Text = "Search";
+   // 
+   // label2
+   // 
+   this.label2.AutoSize = true;
+   this.label2.Location = new System.Drawing.Point(6, 67);
+   this.label2.Name = "label2";
+   this.label2.Size = new System.Drawing.Size(87, 13);
+   this.label2.TabIndex = 3;
+   this.label2.Text = "Search data field";
+   // 
+   // txtDataFieldQuery
+   // 
+   this.txtDataFieldQuery.Location = new System.Drawing.Point(5, 86);
+   this.txtDataFieldQuery.Name = "txtDataFieldQuery";
+   this.txtDataFieldQuery.Size = new System.Drawing.Size(655, 20);
+   this.txtDataFieldQuery.TabIndex = 2;
+   this.txtDataFieldQuery.TextChanged += new System.EventHandler(this.txtDataFieldQuery_TextChanged);
    // 
    // label1
    // 
@@ -142,23 +176,6 @@
    this.txtResult.TabIndex = 0;
    this.txtResult.WordWrap = false;
    // 
-   // label2
-   // 
-   this.label2.AutoSize = true;
-   this.label2.Location = new System.Drawing.Point(6, 67);
-   this.label2.Name = "label2";
-   this.label2.Size = new System.Drawing.Size(87, 13);
-   this.label2.TabIndex = 3;
-   this.label2.Text = "Search data field";
-   // 
-   // txtDataFieldQuery
-   // 
-   this.txtDataFieldQuery.Location = new System.Drawing.Point(5, 86);
-   this.txtDataFieldQuery.Name = "txtDataFieldQuery";
-   this.txtDataFieldQuery.Size = new System.Drawing.Size(655, 20);
-   this.txtDataFieldQuery.TabIndex = 2;
-   this.txtDataFieldQuery.TextChanged += new System.EventHandler(this.txtDataFieldQuery_TextChanged);
-   // 
    // treeStructure
    // 
    this.treeStructure.Location = new System.Drawing.Point(12, 27);
@@ -167,20 +184,12 @@
    this.treeStructure.TabIndex = 3;
    this.treeStructure.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeStructure_NodeMouseDoubleClick);
    // 
-   // actionsToolStripMenuItem
+   // showFileIncludesToolStripMenuItem
    // 
-   this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showFileHistoryToolStripMenuItem});
-   this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
-   this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-   this.actionsToolStripMenuItem.Text = "Actions";
-   // 
-   // showFileHistoryToolStripMenuItem
-   // 
-   this.showFileHistoryToolStripMenuItem.Name = "showFileHistoryToolStripMenuItem";
-   this.showFileHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-   this.showFileHistoryToolStripMenuItem.Text = "Show file history";
-   this.showFileHistoryToolStripMenuItem.Click += new System.EventHandler(this.showFileHistoryToolStripMenuItem_Click);
+   this.showFileIncludesToolStripMenuItem.Name = "showFileIncludesToolStripMenuItem";
+   this.showFileIncludesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+   this.showFileIncludesToolStripMenuItem.Text = "Show file includes";
+   this.showFileIncludesToolStripMenuItem.Click += new System.EventHandler(this.showFileIncludesToolStripMenuItem_Click);
    // 
    // MainForm
    // 
@@ -226,5 +235,6 @@
   private System.Windows.Forms.TreeView treeStructure;
   private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
   private System.Windows.Forms.ToolStripMenuItem showFileHistoryToolStripMenuItem;
+  private System.Windows.Forms.ToolStripMenuItem showFileIncludesToolStripMenuItem;
  }
 }

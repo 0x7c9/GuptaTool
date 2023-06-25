@@ -293,5 +293,17 @@ namespace GuptaTool.Forms
     }
    }
   }
+
+  private void showFileIncludesToolStripMenuItem_Click(object sender, EventArgs e)
+  {
+   txtResult.Text = string.Empty;
+   if (guptaParser.basicBlocks.Count > 0)
+   {
+    foreach (var prop in guptaParser.basicBlocks.Where(x => x.blockType == BlockType.Libraries).Single().contents)
+    {
+     txtResult.Text += prop + "\r\n";
+    }
+   }
+  }
  }
 }
