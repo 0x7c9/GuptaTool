@@ -16,6 +16,7 @@ namespace GuptaTool.GuptaObjects
   FormWindow,
   TableWindow,
   DialogBox,
+  ChildTable
 
 
  }

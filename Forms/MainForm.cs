@@ -151,8 +151,7 @@ namespace GuptaTool.Forms
      {
       foreach(var window in windows)
       {
-       txtResult.ForeColor = Color.Orange;
-       txtResult.Text = $"{txtColumnQuery.Text} is located at: {window.name}\r\n";
+       txtResult.Text += $"{txtColumnQuery.Text} is located at: {window.name}\r\n";
       }
      }
      else
@@ -171,22 +170,21 @@ namespace GuptaTool.Forms
    MessageBox.Show("Codded by 0x7c9 2023","About..",MessageBoxButtons.OK, MessageBoxIcon.Information);
   }
 
-  private void txtQueryCollumnDetail_TextChanged(object sender, EventArgs e)
+  private void txtDataFieldQuery_TextChanged(object sender, EventArgs e)
   {
    txtResult.Text = String.Empty;
    if (guptaParser.tables == null)
     return;
    if (guptaParser.tables.Count > 0)
    {
-    if (txtQueryCollumnDetail.Text.Length > 0)
+    if (txtDataFieldQuery.Text.Length > 0)
     {
-     List<GuptaColumn> columns = guptaParser.GetColumnsFromName(txtQueryCollumnDetail.Text);
-     if (columns != null)
+     List<GuptaObject> windows = guptaParser.GetFormsWhereFieldUsed(txtDataFieldQuery.Text);
+     if (windows != null)
      {
-      foreach (var col in columns)
+      foreach (var window in windows)
       {
-       PrintColumnInfo(col);
-       txtResult.Text += "\r\n";
+       txtResult.Text += $"{txtColumnQuery.Text} is located at: {window.name}\r\n";
       }
      }
      else
@@ -290,6 +288,18 @@ namespace GuptaTool.Forms
 
 
 
+  }
+
+  private void showFileHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+  {
+   txtResult.Text = string.Empty;
+   if(guptaParser.basicBlocks.Count > 0)
+   {
+    foreach(var prop in guptaParser.basicBlocks.Where(x => x.blockType == BlockType.DesignHistory).Single().contents)
+    {
+     txtResult.Text += prop+"\r\n";
+    }
+   }
   }
  }
 }

@@ -14,7 +14,7 @@ namespace GuptaTool
 
   internal static bool IsColumnMarker(string line)
   {
-   if (line.Contains(".head 3 +  Column:"))
+   if (line.Contains(".head") && line.Contains("Column:"))
     return true;
    return false;
   }

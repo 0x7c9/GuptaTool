@@ -40,8 +40,10 @@
    this.groupBox2 = new System.Windows.Forms.GroupBox();
    this.txtResult = new System.Windows.Forms.TextBox();
    this.label2 = new System.Windows.Forms.Label();
-   this.txtQueryCollumnDetail = new System.Windows.Forms.TextBox();
+   this.txtDataFieldQuery = new System.Windows.Forms.TextBox();
    this.treeStructure = new System.Windows.Forms.TreeView();
+   this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+   this.showFileHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
    this.menuStrip1.SuspendLayout();
    this.groupBox1.SuspendLayout();
    this.groupBox2.SuspendLayout();
@@ -51,6 +53,7 @@
    // 
    this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.actionsToolStripMenuItem,
             this.helpToolStripMenuItem});
    this.menuStrip1.Location = new System.Drawing.Point(0, 0);
    this.menuStrip1.Name = "menuStrip1";
@@ -69,7 +72,7 @@
    // openToolStripMenuItem
    // 
    this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-   this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+   this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
    this.openToolStripMenuItem.Text = "Open";
    this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
    // 
@@ -91,7 +94,7 @@
    // groupBox1
    // 
    this.groupBox1.Controls.Add(this.label2);
-   this.groupBox1.Controls.Add(this.txtQueryCollumnDetail);
+   this.groupBox1.Controls.Add(this.txtDataFieldQuery);
    this.groupBox1.Controls.Add(this.label1);
    this.groupBox1.Controls.Add(this.txtColumnQuery);
    this.groupBox1.Location = new System.Drawing.Point(270, 27);
@@ -134,26 +137,27 @@
    this.txtResult.Location = new System.Drawing.Point(6, 19);
    this.txtResult.Multiline = true;
    this.txtResult.Name = "txtResult";
-   this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+   this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
    this.txtResult.Size = new System.Drawing.Size(655, 425);
    this.txtResult.TabIndex = 0;
+   this.txtResult.WordWrap = false;
    // 
    // label2
    // 
    this.label2.AutoSize = true;
    this.label2.Location = new System.Drawing.Point(6, 67);
    this.label2.Name = "label2";
-   this.label2.Size = new System.Drawing.Size(89, 13);
+   this.label2.Size = new System.Drawing.Size(87, 13);
    this.label2.TabIndex = 3;
-   this.label2.Text = "Get column detail";
+   this.label2.Text = "Search data field";
    // 
-   // txtQueryCollumnDetail
+   // txtDataFieldQuery
    // 
-   this.txtQueryCollumnDetail.Location = new System.Drawing.Point(5, 86);
-   this.txtQueryCollumnDetail.Name = "txtQueryCollumnDetail";
-   this.txtQueryCollumnDetail.Size = new System.Drawing.Size(655, 20);
-   this.txtQueryCollumnDetail.TabIndex = 2;
-   this.txtQueryCollumnDetail.TextChanged += new System.EventHandler(this.txtQueryCollumnDetail_TextChanged);
+   this.txtDataFieldQuery.Location = new System.Drawing.Point(5, 86);
+   this.txtDataFieldQuery.Name = "txtDataFieldQuery";
+   this.txtDataFieldQuery.Size = new System.Drawing.Size(655, 20);
+   this.txtDataFieldQuery.TabIndex = 2;
+   this.txtDataFieldQuery.TextChanged += new System.EventHandler(this.txtDataFieldQuery_TextChanged);
    // 
    // treeStructure
    // 
@@ -162,6 +166,21 @@
    this.treeStructure.Size = new System.Drawing.Size(252, 572);
    this.treeStructure.TabIndex = 3;
    this.treeStructure.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeStructure_NodeMouseDoubleClick);
+   // 
+   // actionsToolStripMenuItem
+   // 
+   this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showFileHistoryToolStripMenuItem});
+   this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
+   this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+   this.actionsToolStripMenuItem.Text = "Actions";
+   // 
+   // showFileHistoryToolStripMenuItem
+   // 
+   this.showFileHistoryToolStripMenuItem.Name = "showFileHistoryToolStripMenuItem";
+   this.showFileHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+   this.showFileHistoryToolStripMenuItem.Text = "Show file history";
+   this.showFileHistoryToolStripMenuItem.Click += new System.EventHandler(this.showFileHistoryToolStripMenuItem_Click);
    // 
    // MainForm
    // 
@@ -203,7 +222,9 @@
   private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
   private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
   private System.Windows.Forms.Label label2;
-  private System.Windows.Forms.TextBox txtQueryCollumnDetail;
+  private System.Windows.Forms.TextBox txtDataFieldQuery;
   private System.Windows.Forms.TreeView treeStructure;
+  private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
+  private System.Windows.Forms.ToolStripMenuItem showFileHistoryToolStripMenuItem;
  }
 }
